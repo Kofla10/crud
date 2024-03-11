@@ -25,4 +25,4 @@ class Connection {
     }
 }
 
-Connection::getConnection(); // corrected method name
+// Connection::getConnection(); // corrected method name
