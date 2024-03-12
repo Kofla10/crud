@@ -1,12 +1,11 @@
 <?php
-
-require_once './app/config/connection.php';
-
-class  Persona extends  Connection{
+ require_once '../config/connection.php';
+class  Person extends  Connection{
     public static function showData(){
+
         try {
 
-            $sql = "select * from persona";
+            $sql = "select * from person";
             $stmt = Connection::getConnection()->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll();
@@ -23,12 +22,13 @@ class  Persona extends  Connection{
 
         try {
 
-            $sql = "select * from persona where id = :id";
+            $sql = "select * from person where id = :id";
             $stmt = Connection::getConnection()->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
             $result = $stmt->fetch();
             return $result;
+
         } catch (PDOException $th) {
             echo $th->getMessage();
         }
@@ -36,10 +36,10 @@ class  Persona extends  Connection{
 
 
     public  static function saveData($data){
-        try {
 
-            $sql = "INSERT INTO persona (name, email, age) VALUES (:name, :email, :age)";
-            $stmt = Connectio::getConnection()->prepare($sql);
+        try {
+            $sql = "INSERT INTO person (name, email, age) VALUES (:name, :email, :age)";
+            $stmt = Connection::getConnection()->prepare($sql);
             $stmt->bindParam(':name', $data['name']);
             $stmt->bindParam(':email', $data['email']);
             $stmt->bindParam(':age', $data['age']);
@@ -53,11 +53,12 @@ class  Persona extends  Connection{
     public  static function updateData($data){
         try {
 
-            $sql = "update persona set name = :name, email=:email, age= :age where id = :id";
-            $stmt = Connectio::getConnection()->prepare($sql);
-            $stmt->bindParam(':name', $data['name']);
+            $sql = "update person set name = :name, email=:email, age= :age where id = :id";
+            $stmt = Connection::getConnection()->prepare($sql);
+            $stmt->bindParam(':name' , $data['names']);
             $stmt->bindParam(':email', $data['email']);
-            $stmt->bindParam(':age', $data['age']);
+            $stmt->bindParam(':age'  , $data['age']);
+            $stmt->bindParam(':id'   , $data['id']);
             $stmt->execute();
             return true;
 
@@ -69,14 +70,14 @@ class  Persona extends  Connection{
     public static function deleteData($id){
 
         try {
-            $sql = "delete from persona where id = :id";
+            $sql = "delete from person where id = :id";
             $stmt = Connection::getConnection()->prepare($sql);
-            $stmt->bimdParam(":id", $id);
-            $stmt->exceute();
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
             return true;
 
-        } catch (PDOExeption $th) {
-            echo $th->getMesaage();
+        } catch (PDOException $th) {
+            echo $th->getMessage();
         }
 
     }

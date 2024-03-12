@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../../public/css/style.css">
 </head>
 <body>
     <div class="container">
-        <div>
-            <h5>Form</h5>
+        <div class="content">
+            <h5 class="title">Form</h5>
             <hr>
-            <form action="javascrip:void(0)">
+            <form class="form" action="" onsubmit= "app.save()">
                 <input type="hidden" id="id">
                 <!-- <label for="name">Nombres</label> -->
                 <input type="text"
@@ -19,18 +20,21 @@
                        autofocus
                        required
                 >
+
                 <input type="email"
                        id="email"
                        placeholder="email@email.com"
                        required
                 >
+
                 <input type="number"
-                       id="eda"
+                       id="age"
                        placeholder="18"
                        min="18"
                        max="85"
                        required
                 >
+
                 <br>
 
                 <div class="btns">
@@ -51,7 +55,7 @@
                         <th>Opciones</th>
                     </tr>
                 </thead>
-                <tbody id="tdoby"></tbody>
+                <tbody id="tbody"></tbody>
             </table>
         </div>
     </div>

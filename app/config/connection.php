@@ -7,7 +7,6 @@ class Connection {
     public $user       = 'postgres';
     public $password   = '';
     public $driver     = 'pgsql'; // corrected driver name
-    public $drivermysl = 'mysql'; // to connection with mysql
     public $connect;
 
     public static function getConnection(){ // corrected method name
@@ -17,12 +16,11 @@ class Connection {
 
             $connection->connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            echo "Connection success";
+            return $connection->connect; // Return the PDO connection
 
         } catch (PDOException $e) {
             echo "Error " . $e->getMessage();
+            return null;
         }
     }
 }
-
-// Connection::getConnection(); // corrected method name
